@@ -10,3 +10,17 @@
     import 'relative/path/to/stylesheet.scss';
 
 */
+
+* {
+    font-family: 'Indie Flower', cursive;
+}
+.btnInput:active {
+    outline: none !important;
+    border-bottom: none;
+}
+.btnInput:focus {
+    outline: none !important;
+    border-bottom: none;
+
+
+}
