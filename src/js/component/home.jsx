@@ -11,7 +11,7 @@ const Home = () => {
 	const [ToodoList,setToodoList]=useState([])
 	const [stateCountTodo,setStateCountTodo] = useState()
 	// este estado lo que hara es fijarse si el componente esta en su pseudoclase hover para colocar el boton de eliminar
-	const [hover,setHover] = useState()
+	const [hover,setHover] = useState({state:false,ref:undefined})
 
 	const styleInput = {
 	borderBottom: "none",
@@ -45,6 +45,13 @@ const Home = () => {
 		setToodoList(newArr)
 	}
 
+	const ActualizarEstado = (state,ref)=> {
+		setHover({
+			state:state,
+			ref:ref
+		})
+	}
+
 
 	return (
 		<div className="container">
@@ -58,10 +65,10 @@ const Home = () => {
 					{
 						ToodoList[0]?
 						ToodoList.map((todo,index)=> {
-							return <li key={index} onMouseEnter={()=> setHover(true)} onMouseLeave={()=> setHover(false)} className="list-group-item d-flex flex-row justify-content-between">
+							return <li key={index} onMouseEnter={()=> ActualizarEstado(true,index)} onMouseLeave={()=> ActualizarEstado(false,index)} className="list-group-item d-flex flex-row justify-content-between">
 								<p className="p-0 m-0">{todo}</p>
 								{
-									hover === true && <p role="button" onClick={()=> EliminarTodo(index)} className="p-0 m-0 text-danger opacity-50">X</p>
+									(hover.state === true && hover.ref === index) &&  <p role="button" onClick={()=> EliminarTodo(index)} className="p-0 m-0 text-danger opacity-50">X</p>
 								}
 
 							</li>
